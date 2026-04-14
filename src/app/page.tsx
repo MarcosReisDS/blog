@@ -1,15 +1,10 @@
-import clsx from "clsx";
+import { Header } from "@/components/Header";
 
 export default function HomePage() {
+    console.log("HomePage rendered");
     return (
         <div>
-            <h1 className={clsx(
-                "text-xl",
-                "font-bold",
-                "text-blue-700",
-            )}>
-                Homesseee
-            </h1>
+            <Header />
         </div>
     )
 }
