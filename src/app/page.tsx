@@ -1,8 +1,15 @@
+import clsx from "clsx";
+
 export default function HomePage() {
     return (
-        <>
-            <h1>Home</h1>
-            <a href="http://localhost:3000/about" style={{ background: "red" }}>Ir para about</a>
-        </>
+        <div>
+            <h1 className={clsx(
+                "text-xl",
+                "font-bold",
+                "text-blue-700",
+            )}>
+                Homesseee
+            </h1>
+        </div>
     )
 }
