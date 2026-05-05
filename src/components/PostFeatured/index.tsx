@@ -1,5 +1,6 @@
 import { PostCoverImage } from "../PostCoverImage";
 import { PostHeading } from "../PostHeading";
+import { PostSummary } from "../PostSummary";
 
 export function PostFeatured() {
     const slug = "titulo-do-post";
@@ -20,13 +21,13 @@ export function PostFeatured() {
                 }}
             />
 
-            <div className="flex flex-col gap-4 sm:justify-center">
-                <time className="text-slate-600 block text-sm" dateTime="2025-04-20">20/04/2026 10:00</time>
-
-                <PostHeading as="h1" url={postLink}>Blabla</PostHeading>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ducimus esse et necessitatibus maxime consequatur aperiam voluptas quaerat quis. Sunt quisquam nulla in doloribus atque! Totam sequi pariatur laborum placeat!</p>
-            </div>
+            <PostSummary
+                postHeading="h1"
+                postLink={postLink}
+                createdAt={"2025-04-08T00:24:38.616Z"}
+                title={"Rotina matinal de pessoas altamente eficazes"}
+                excerpt={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ducimus esse et necessitatibus maxime consequatur aperiam voluptas quaerat quis. Sunt quisquam nulla in doloribus atque! Totam sequi pariatur laborum placeat!"}
+            />
         </section>
     )
 }
