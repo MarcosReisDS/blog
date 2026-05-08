@@ -5,7 +5,7 @@ import { readFile } from "fs/promises"
 
 const ROOT_DIR = process.cwd();
 const JSON_FILE_PATH = resolve(ROOT_DIR, "src", "db", "seed", "posts.json");
-const SIMULATE_WAIT_IN_MS = 0;
+const SIMULATE_WAIT_IN_MS = 5000;
 
 export class JsonPostRepository implements PostRepository {
     private async simulateWait() {
@@ -29,8 +29,6 @@ export class JsonPostRepository implements PostRepository {
     }
 
     async findById(id: string): Promise<PostModel> {
-        await this.simulateWait();
-
         const posts = await this.findAllPublic();
         const post = posts.find((post) => post.id === id);
 
@@ -40,8 +38,6 @@ export class JsonPostRepository implements PostRepository {
     }
 
     async findBySlug(slug: string): Promise<PostModel> {
-        await this.simulateWait();
-
         const posts = await this.findAllPublic();
         const post = posts.find((post) => post.slug === slug);
 
