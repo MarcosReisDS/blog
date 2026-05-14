@@ -10,5 +10,5 @@ export const drizzleDb = drizzle(sqliteDatebase, {
     schema: {
         posts: postsTable,
     },
-    logger: true
+    logger: false
 })
