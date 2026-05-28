@@ -1,5 +1,5 @@
 'use server';
 
-export async function deletePostAction(formData: FormData) {
-    const id = formData.get('id');
+export async function deletePostAction(id: string) {
+    return id;
 }
