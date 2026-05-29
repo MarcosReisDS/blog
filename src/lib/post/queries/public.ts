@@ -23,7 +23,7 @@ export const findPublicPostBySlugCached = cache(
                 return post
             },
             [`post-${slug}`],
-            { tags: [`post-${slug}`] }
+            { tags: [`post-${slug}`] },
         )(slug)
     }
 )
