@@ -30,6 +30,7 @@ export function DeletePostButton({ id, title }: DeletePostButtonProps) {
             aria-label={`Apagar o post: ${title}`}
             title={`Apagar o post: ${title}`}
             disabled={isPending}
+            onClick={handleClick}
         >
             <Trash2Icon />
         </button>
