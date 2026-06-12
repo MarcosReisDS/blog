@@ -1,7 +1,8 @@
 'use server'
 
-import error from "@/app/error";
-import { IMAGE_UPLOADER_MAX_SIZE } from "@/lib/post/constants";
+import { IMAGE_SERVER_URL, IMAGE_UPLOADER_DIRECTORY, IMAGE_UPLOADER_MAX_SIZE } from "@/lib/post/constants";
+import { mkdir, writeFile } from "fs/promises";
+import { extname, resolve } from "path";
 
 type UploadImageActionResult = {
     url: string;
@@ -29,5 +30,20 @@ export async function uploadImageAction(formData: FormData): Promise<UploadImage
         return makeResult({ error: 'Imagem inválida' })
     }
 
-    return makeResult({ url: 'URL' })
+    const imageExtension = extname(file.name);
+    const uniqueImageName = `${Date.now()}${imageExtension}`;
+
+    const uploadFullPath = resolve(process.cwd(), 'public', IMAGE_UPLOADER_DIRECTORY);
+    await mkdir(uploadFullPath, { recursive: true });
+
+    const fileArrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(fileArrayBuffer);
+
+    const fileFullPath = resolve(uploadFullPath, uniqueImageName);
+
+    await writeFile(fileFullPath, buffer);
+
+    const url = `${IMAGE_SERVER_URL}/${uniqueImageName}`;
+
+    return makeResult({ url });
 }
