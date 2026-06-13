@@ -4,12 +4,13 @@ import { uploadImageAction } from "@/actions/upload/upload-image-action";
 import { Button } from "@/components/Button";
 import { IMAGE_UPLOADER_MAX_SIZE } from "@/lib/post/constants";
 import { ImageUpIcon } from "lucide-react";
-import { useRef, useTransition } from "react";
+import { useRef, useState, useTransition } from "react";
 import { toast } from "react-toastify";
 
 export function ImageUploader() {
     const inputFileRef = useRef<HTMLInputElement>(null)
     const [isUploading, startTransition] = useTransition()
+    const [imgUrl, setImgUrl] = useState('')
 
     function handleChooseFile() {
         if (!inputFileRef.current) return;
@@ -20,18 +21,25 @@ export function ImageUploader() {
     function handleChange() {
         toast.dismiss();
 
-        if (!inputFileRef) return;
+        if (!inputFileRef) {
+            setImgUrl('')
+            return;
+        };
 
         const fileInput = inputFileRef.current
         const file = fileInput?.files?.[0];
 
-        if (!file) return;
+        if (!file) {
+            setImgUrl('')
+            return;
+        };
 
         if (file.size > IMAGE_UPLOADER_MAX_SIZE) {
             const readableMaxSize = IMAGE_UPLOADER_MAX_SIZE / 1024;
             toast.error(`Imagem muito grande. Máx: ${readableMaxSize}KB.`)
 
             fileInput.value = '';
+            setImgUrl('')
             return;
         }
 
@@ -47,7 +55,8 @@ export function ImageUploader() {
                 return;
             }
 
-            toast.success(result.url)
+            setImgUrl(result.url)
+            toast.success('Imagem enviada')
         })
 
         fileInput.value = '';
@@ -55,10 +64,26 @@ export function ImageUploader() {
 
     return (
         <div className="flex flex-col gap-2">
-            <Button onClick={handleChooseFile} type="button" className="self-start">
+            <Button
+                onClick={handleChooseFile}
+                type="button"
+                className="self-start"
+                disabled={isUploading}
+            >
                 <ImageUpIcon />
                 Enviar uma imagem
             </Button>
+
+            {!!imgUrl && (
+                <div className="flex flex-col gap-4">
+                    <p>
+                        <b>URL:</b> {imgUrl}
+                    </p>
+
+                    <img className="rounded-lg" src={imgUrl} />
+                </div>
+            )}
+
             <input
                 onChange={handleChange}
                 ref={inputFileRef}
@@ -66,6 +91,7 @@ export function ImageUploader() {
                 name="file"
                 type="file"
                 accept="image/*"
+                disabled={isUploading}
             />
         </div>
     )
