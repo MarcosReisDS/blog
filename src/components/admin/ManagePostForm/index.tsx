@@ -14,18 +14,70 @@ export function ManagePostForm() {
         <form action='' className="mb-16 mt-10">
             <div className="flex flex-col gap-6">
 
-                <InputText labelText="Nome" placeholder="Digite seu nome" />
+                <InputText
+                    labelText="ID"
+                    name="id"
+                    placeholder="ID gerado automaticamente"
+                    type="text"
+                    defaultValue={''}
+                    readOnly
+                />
 
-                <ImageUploader/>
+                <InputText
+                    labelText="Slug"
+                    name="slug"
+                    placeholder="Slug gerada automaticamente"
+                    type="text"
+                    defaultValue={''}
+                    readOnly
+                />
 
-                <InputCheckbox labelText="Aceito os termos de uso" />
+                <InputText
+                    labelText="Autor"
+                    name="author"
+                    placeholder="Digite o nome do autor"
+                    type="text"
+                    defaultValue={''}
+                />
+
+                <InputText
+                    labelText="Título"
+                    name="title"
+                    placeholder="Digite o título"
+                    type="text"
+                    defaultValue={''}
+                />
+
+                <InputText
+                    labelText="Excerto"
+                    name="excerpt"
+                    placeholder="Digite o resumo"
+                    type="text"
+                    defaultValue={''}
+                />
 
                 <MarkdownEditor
                     labelText="Conteúdo"
-                    disabled={false}
-                    textAreaName="content"
                     value={contentValue}
                     setValue={setContentValue}
+                    textAreaName="content"
+                    disabled={false}
+                />
+
+                <ImageUploader />
+
+                <InputText
+                    labelText="URL da imagem de capa"
+                    name="coverImageUrl"
+                    placeholder="Digite a URL da imagem"
+                    type="text"
+                    defaultValue={''}
+                />
+
+                <InputCheckbox
+                    labelText="Publicar?"
+                    name="published"
+                    type="checkbox"
                 />
 
                 <div className="mt-4">
