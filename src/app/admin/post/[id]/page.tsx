@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-    title: 'Ediatar post'
+    title: 'Editar post'
 }
 
 type AdminPostIdPageProps = {
@@ -23,7 +23,7 @@ export default async function AdminPostIdPage({ params }: AdminPostIdPageProps) 
     const publicPost = makePublicPost(post)
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-10">
             <h1 className="text-xl font-extrabold">Editar post</h1>
             <ManagePostForm publicPost={publicPost}/>
         </div>

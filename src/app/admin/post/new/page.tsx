@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function AdminPostNewPage() {
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-10">
             <h1 className="text-xl font-extrabold">Criar post</h1>
             <ManagePostForm />
         </div>
