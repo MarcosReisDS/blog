@@ -26,7 +26,7 @@ export function ManagePostForm({ publicPost }: ManagePostFormProps) {
     )
 
     const { formState } = state;
-    const [contentValue, setContentValue] = useState(publicPost?.content || '');
+    const [contentValue, setContentValue] = useState(formState.content);
 
     return (
         <form action={action} className="mb-16">
@@ -76,9 +76,9 @@ export function ManagePostForm({ publicPost }: ManagePostFormProps) {
 
                 <MarkdownEditor
                     labelText="Conteúdo"
+                    textAreaName="content"
                     value={contentValue}
                     setValue={setContentValue}
-                    textAreaName="content"
                     disabled={false}
                 />
 

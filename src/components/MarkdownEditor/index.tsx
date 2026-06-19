@@ -41,7 +41,7 @@ export function MarkdownEditor({
                 extraCommands={[]}
                 preview="edit"
                 hideToolbar={disabled}
-                textAreaProps={{
+                textareaProps={{
                     id,
                     name: textAreaName,
                     disabled: disabled,
