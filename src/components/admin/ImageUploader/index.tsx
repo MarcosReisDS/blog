@@ -59,12 +59,16 @@ export function ImageUploader({ disabled = false }: ImageUploaderProps) {
                 return;
             }
 
+            console.log('result', result)
+
             setImgUrl(result.url)
             toast.success('Imagem enviada')
         })
 
         fileInput.value = '';
     }
+
+    console.log(imgUrl)
 
     return (
         <div className="flex flex-col gap-2">

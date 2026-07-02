@@ -4,11 +4,12 @@ import { makePartialPublicPost, makePublicPostFromDb, PublicPost } from "@/dto/p
 import { PostUpdateSchema } from "@/lib/post/validations";
 import { postRepository } from "@/repositories/post";
 import { getZodErrorMessage } from "@/utils/get-zod-error-messages";
+import { revalidateTag } from "next/cache";
 
 type UpdatePostActionState = {
     formState: PublicPost;
     erros: string[];
-    success?: true;
+    success?: string;
 }
 
 export async function updatePostAction(
@@ -75,6 +76,6 @@ export async function updatePostAction(
     return {
         formState: makePublicPostFromDb(post),
         erros: [],
-        success: true
+        success: `${Date.now()}`
     }
 }
