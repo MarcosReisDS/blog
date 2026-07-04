@@ -23,6 +23,7 @@ export function PostCoverImage({ imageProps, linkProps }: PostCoverImageProps) {
                 )}
                 {...imageProps}
                 alt={imageProps.alt}
+                unoptimized
             />
         </Link>
     )

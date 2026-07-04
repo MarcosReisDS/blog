@@ -11,8 +11,6 @@ type SinglePostProps = {
 export async function SinglePost({ slug }: SinglePostProps) {
     const post = await findPublicPostBySlugCached(slug)
 
-    console.log(post.coverImageUrl)
-
     return (
         <article className="mb-16">
             <header className="group flex flex-col gap-4 mb-4">
@@ -22,6 +20,7 @@ export async function SinglePost({ slug }: SinglePostProps) {
                     width={1200}
                     height={720}
                     alt={post.title}
+                    unoptimized
                 />
 
                 <PostHeading url={`/post/${post.slug}`}>{post.title}</PostHeading>

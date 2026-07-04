@@ -56,10 +56,9 @@ export function ImageUploader({ disabled = false }: ImageUploaderProps) {
             if (result.error) {
                 toast.error(result.error)
                 fileInput.value = '';
+                setImgUrl('');
                 return;
             }
-
-            console.log('result', result)
 
             setImgUrl(result.url)
             toast.success('Imagem enviada')
@@ -67,9 +66,7 @@ export function ImageUploader({ disabled = false }: ImageUploaderProps) {
 
         fileInput.value = '';
     }
-
-    console.log(imgUrl)
-
+    
     return (
         <div className="flex flex-col gap-2">
             <Button
