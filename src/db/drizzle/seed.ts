@@ -9,6 +9,8 @@ import { postsTable } from "./schemas";
     try {
         await drizzleDb.delete(postsTable)
         await drizzleDb.insert(postsTable).values(posts)
+
+        console.log(`${posts.length} posts foram salvos na base de dados.`)
     } catch (e) {
         console.log(e)
     }
